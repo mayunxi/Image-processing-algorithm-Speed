@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.15)
+project(ssetest)
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+include_directories("/usr/include/ffmpeg")
+set(CMAKE_CXX_STANDARD 14)
+
+add_definitions("-msse4.1")
+add_executable(testsse speed_rgb2yuv_sse.cpp)
+target_link_libraries(testsse ${OpenCV_LIBS} avformat avcodec avutil swscale)
